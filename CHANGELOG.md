@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.0](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.0.2.1...semverUtils-v.1.0.0) (2026-07-27)
+
+### ⚠ BREAKING CHANGES
+
+* **validations:** this commit will update the library to a new version
+
+### Features
+
+* **validations:** email type validation ([926b71a](https://github.com/jairogomz/semver-utils/commit/926b71ae0a306c032200232ef4e12b6300b70793))
+
 ## [0.2.1](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.0.2.0...semverUtils-v.0.2.1) (2026-07-27)
 
 ### Bug Fixes
