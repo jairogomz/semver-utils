@@ -1,6 +1,6 @@
 {
   "name": "@jairogomz/semver-utils",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "TypeScript utilities with automated semantic versioning workflow",
   "type": "module",
   "main": "./dist/index.js",
