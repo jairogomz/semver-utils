@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.0.2.0...semverUtils-v.0.2.1) (2026-07-27)
+
+### Bug Fixes
+
+* fixing capitalize function ([08429c2](https://github.com/jairogomz/semver-utils/commit/08429c20cdd572b90239747767a5ea9d3be3cbfe))
+
 ## [0.2.0](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.0.1.0...semverUtils-v.0.2.0) (2026-07-27)
 
 ### Features
