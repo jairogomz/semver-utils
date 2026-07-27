@@ -1,0 +1,15 @@
+#!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+echo ""
+echo "**** Starting husky commit-msg validation ****"
+echo "NOTE: If you are not using the commit message convention: <type>[optional scope]: <description> [optional body] [optional footer(s)]"
+echo "Run the following command: npm run commit, this will display a prompt that will guide you to make a conventional commit."
+
+
+npx commitlint --edit ${1}
+
+echo "**** Husky commit-msg validation done! ****"
+echo ""
+echo "--------------------------------------------------------------------------"
+echo ""
