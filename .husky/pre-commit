@@ -1,0 +1,11 @@
+#!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+echo ""
+echo "**** Starting husky pre-commit validation ****"
+
+npx lint-staged
+
+echo "**** Husky pre-commit validation done! ****"
+echo ""
+echo "--------------------------------------------------------------------------"
