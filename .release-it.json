@@ -13,13 +13,11 @@
   },
   "npm": {
     "publish": false,
-    "skipChecks": true,
-    "ignoreVersion": true
+    "skipChecks": true
   },
   "plugins": {
     "@release-it/bumper": {
-      "in": ["package.json"],
-      "out": ["package.json"]
+      "in": ["package.json"]
     },
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
@@ -35,6 +33,10 @@
             "section": "Bug Fixes"
           },
           {
+            "type": "perf",
+            "section": "Performance"
+          },
+          {
             "type": "docs",
             "section": "Documentation",
             "effect": "hidden"
@@ -47,11 +49,6 @@
           {
             "type": "refactor",
             "section": "Refactors",
-            "effect": "hidden"
-          },
-          {
-            "type": "perf",
-            "section": "Performance",
             "effect": "hidden"
           },
           {
@@ -75,7 +72,7 @@
             "effect": "hidden"
           },
           {
-            "type": "reverts",
+            "type": "revert",
             "section": "Reverts",
             "effect": "hidden"
           }
