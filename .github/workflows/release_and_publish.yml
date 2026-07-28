@@ -1,9 +1,10 @@
 name: Release and publish library
 
+## Temporarily disabled to manage it via AzDevops
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
 concurrency:
@@ -48,18 +49,19 @@ jobs:
 
       - name: Release
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "${{ secrets.GIT_USER_NAME }}"
+          git config user.email "${{ secrets.GIT_USER_EMAIL }}"
           pnpm exec release-it --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Configure npm registry
         run: |
-          echo "@jairogomz:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "${NPM_SCOPE}:registry=https://npm.pkg.github.com/" > ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_SCOPE: ${{ vars.NPM_SCOPE }}
 
       - name: Publish package
         run: pnpm publish
