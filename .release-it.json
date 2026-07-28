@@ -7,7 +7,7 @@
     "push": true
   },
   "github": {
-    "release": true,
+    "release": false,
     "releaseName": "Release: semverUtils v.${version}",
     "tokenRef": "GITHUB_TOKEN"
   },
@@ -34,7 +34,8 @@
           },
           {
             "type": "perf",
-            "section": "Performance"
+            "section": "Performance",
+            "effect": "hidden"
           },
           {
             "type": "docs",
@@ -81,7 +82,6 @@
     }
   },
   "hooks": {
-    "after:bump": "echo 'Version bumped to ${version}'",
-    "after:git:release": "git push origin HEAD --tags"
+    "after:bump": "echo 'Version bumped to ${version}'"
   }
 }
