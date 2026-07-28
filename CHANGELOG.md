@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.1.0.0...semverUtils-v.1.0.1) (2026-07-28)
+
+### Bug Fixes
+
+* adding fake fix ([0dcbc5f](https://github.com/jairogomz/semver-utils/commit/0dcbc5f0e3ef1b407e423a3de408d8b9a74fa542))
+
 ## [1.0.0](https://github.com/jairogomz/semver-utils/compare/semverUtils-v.0.2.1...semverUtils-v.1.0.0) (2026-07-27)
 
 ### ⚠ BREAKING CHANGES
