@@ -1,0 +1,80 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pr: none
+
+variables:
+- name: environmentName
+  value: PRD-TEST
+- group: release-library-prd-test
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Release
+  displayName: Release library
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+
+  jobs:
+  - deployment: ReleaseLibrary
+    displayName: Release semverUtils
+    environment: $(environmentName)
+
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+            fetchDepth: '0'
+
+          - task: NodeTool@0
+            displayName: Setup Node.js
+            inputs:
+              versionSpec: '22'
+
+          - script: |
+              corepack enable
+              corepack prepare pnpm@10 --activate
+            displayName: Setup pnpm
+
+          - script: |
+              echo "registry=https://pkgs.dev.azure.com/$(azureArtifactsOrg)/$(azureArtifactsProject)/_packaging/$(azureArtifactsFeed)/npm/registry/" > .npmrc
+              echo "always-auth=true" >> .npmrc
+            displayName: Create npm configuration
+
+          - task: npmAuthenticate@0
+            displayName: Authenticate Azure Artifacts
+            inputs:
+              workingFile: .npmrc
+
+          - script: |
+              pnpm install --frozen-lockfile
+            displayName: Install dependencies
+
+          - script: |
+              pnpm lint
+            displayName: Lint
+
+          - script: |
+              pnpm build
+            displayName: Build
+
+          - script: |
+              git remote set-url origin https://$(githubPAT)@$(srcRepoUrl)
+              git config user.name "$(gitUserName)"
+              git config user.email "$(gitUserEmail)"
+              pnpm exec release-it --ci
+            displayName: Release
+            env:
+              GITHUB_TOKEN: $(githubPAT)
+
+          - script: |
+              pnpm publish
+            displayName: Publish package
+
+          - publish: CHANGELOG.md
+            artifact: changelog
+            displayName: Publish CHANGELOG.md artifact
